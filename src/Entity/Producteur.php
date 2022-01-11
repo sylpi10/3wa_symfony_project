@@ -140,11 +140,11 @@ class Producteur extends FinalUser
 
     public function acceptCheckPoint(Checkpoint $checkpoint)
     {
-        if (!$this->submissions->contains($checkpoint)) {
+        if (!$this->checkpoints->contains($checkpoint)) {
             throw new LogicException(" not related");
         }
         // $checkpoint->setAccepted(true);
-        // foreach ($this->submissions as $s) {
+        // foreach ($this->checkpoints as $s) {
         //     if ($s !== $checkpoint) {
         //         $s->setAccepted(false);
         //     }

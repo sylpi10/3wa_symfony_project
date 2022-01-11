@@ -29,5 +29,6 @@ class Organisateur extends FinalUser
     public function assignCheckpoint(Checkpoint $chechpoint, Producteur $producteur)
     {
         # assign one or many checkpoint to a producteur
+
     }
 }
