@@ -16,13 +16,6 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class Producteur extends FinalUser
 {
     /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private $id;
-
-    /**
      * @ORM\Column(type="string", length=255)
      */
     private $address;

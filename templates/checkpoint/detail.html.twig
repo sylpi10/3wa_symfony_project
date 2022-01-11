@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Checkpoint detail
+{% endblock %}
+
+{% block body %}
+
+	<div class="example-wrapper">
+		<h1>Checkpoints</h1>
+		<hr>
+		<div class="item">
+			<h2>{{checkpoint.name}}</h2>
+			<h4>{{checkpoint.address}}</h4>
+			<h3>{{checkpoint.city}}</h3>
+
+			<div class="">
+				<h2>Les producteurs de ce checkpoint :</h2>
+				{% for producteur in checkpoint.producteurs %}
+					{# <a href="{{path("producteur_detail", {'id': producteur.id})}}"> #}
+					<h3>{{producteur}},
+						{{producteur.id}}</h3>
+					{# </a> #}
+					<h5>{{producteur.address}}</h5>
+				{% endfor %}
+			</div>
+		</div>
+
+	</div>
+{% endblock %}

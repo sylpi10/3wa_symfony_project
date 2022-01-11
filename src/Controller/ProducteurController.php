@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\FinalUser;
+use App\Entity\Producteur;
 use App\Repository\ProducteurRepository;
 use App\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -22,8 +24,20 @@ class ProducteurController extends AbstractController
     public function index(): Response
     {
         $producteurs = $this->repo->findAll();
+
         return $this->render('producteur/index.html.twig', [
             'producteurs' => $producteurs,
+        ]);
+    }
+
+    /**
+     * @Route("/producteur/{id}", name="producteur_detail")
+     */
+    public function detail(Producteur $producteur): Response
+    {
+        dd($producteur);
+        return $this->render('producteur/index.html.twig', [
+            'producteur' => $producteur,
         ]);
     }
 }

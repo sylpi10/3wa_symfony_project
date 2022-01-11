@@ -19,7 +19,7 @@ class FinalUser implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
@@ -178,6 +178,6 @@ class FinalUser implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function __toString(): string
     {
-        return $this->frstname . " " . $this->lastName;
+        return $this->firstname . " " . $this->lastname;
     }
 }

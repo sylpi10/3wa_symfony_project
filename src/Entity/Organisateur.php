@@ -13,18 +13,6 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class Organisateur extends FinalUser
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private $id;
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
 
     public function assignCheckpoint(Checkpoint $chechpoint, Producteur $producteur)
     {
