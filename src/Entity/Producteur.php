@@ -13,7 +13,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 /**
  * @ORM\Entity(repositoryClass=ProducteurRepository::class)
  */
-class Producteur implements UserInterface, PasswordAuthenticatedUserInterface
+class Producteur extends FinalUser
 {
     /**
      * @ORM\Id
@@ -21,16 +21,6 @@ class Producteur implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(type="integer")
      */
     private $id;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $firstname;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $lastname;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -52,25 +42,7 @@ class Producteur implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $checkpoints;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $password;
 
-    /**
-     * @ORM\Column(type="array", nullable=true)
-     */
-    private $roles = [];
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $email;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $test;
 
     public function __construct()
     {
@@ -83,29 +55,6 @@ class Producteur implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->id;
     }
 
-    public function getFirstname(): ?string
-    {
-        return $this->firstname;
-    }
-
-    public function setFirstname(string $firstname): self
-    {
-        $this->firstname = $firstname;
-
-        return $this;
-    }
-
-    public function getLastname(): ?string
-    {
-        return $this->lastname;
-    }
-
-    public function setLastname(string $lastname): self
-    {
-        $this->lastname = $lastname;
-
-        return $this;
-    }
 
     public function getAddress(): ?string
     {
@@ -188,51 +137,11 @@ class Producteur implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getPassword(): ?string
-    {
-        return $this->password;
-    }
-
-    public function setPassword(string $password): self
-    {
-        $this->password = $password;
-
-        return $this;
-    }
-
-    public function getRoles(): ?array
-    {
-        return $this->roles;
-    }
-
-    public function setRoles(?array $roles): self
-    {
-        $this->roles = $roles;
-
-        return $this;
-    }
-    public function eraseCredentials()
-    {
-    }
-
-    public function getUserIdentifier(): string
-    {
-        return $this->email;
-    }
-
-    public function getSalt()
-    {
-    }
-    public function getUserName()
-    {
-        return $this->firstname . " " . $this->lastname;
-    }
-
 
     public function acceptCheckPoint(Checkpoint $checkpoint)
     {
         if (!$this->submissions->contains($checkpoint)) {
-            throw new LogicException("submission not related");
+            throw new LogicException(" not related");
         }
         // $checkpoint->setAccepted(true);
         // foreach ($this->submissions as $s) {
@@ -240,29 +149,5 @@ class Producteur implements UserInterface, PasswordAuthenticatedUserInterface
         //         $s->setAccepted(false);
         //     }
         // }
-    }
-
-    public function getEmail(): ?string
-    {
-        return $this->email;
-    }
-
-    public function setEmail(string $email): self
-    {
-        $this->email = $email;
-
-        return $this;
-    }
-
-    public function getTest(): ?string
-    {
-        return $this->test;
-    }
-
-    public function setTest(string $test): self
-    {
-        $this->test = $test;
-
-        return $this;
     }
 }

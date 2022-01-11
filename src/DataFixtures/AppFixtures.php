@@ -25,7 +25,7 @@ class AppFixtures extends Fixture
         $producteur->setLastname("Wayne");
         $producteur->setEmail("producteur1@mail.fr");
         $producteur->setPassword($this->hasher->hashPassword($producteur, "password"));
-        $producteur->setRoles(['PRODUCTEUR']);
+        $producteur->setRoles(['ROLE_PRODUCTEUR']);
         $producteur->setAddress("2 rue de la paix");
         $producteur->setCity("Paris");
         $manager->persist($producteur);
@@ -33,7 +33,7 @@ class AppFixtures extends Fixture
         $producteur2->setFirstname("John");
         $producteur2->setLastname("Lennon");
         $producteur2->setEmail("producteur2@mail.fr");
-        $producteur2->setRoles(['PRODUCTEUR']);
+        $producteur2->setRoles(['ROLE_PRODUCTEUR']);
         $producteur2->setPassword($this->hasher->hashPassword($producteur2, "password"));
         $producteur2->setAddress("Avenue matignon");
         $producteur2->setCity("Paris");
@@ -72,16 +72,18 @@ class AppFixtures extends Fixture
         $manager->persist($product4);
 
         $orga = new Organisateur();
-        $orga->setName("Organisateur 01");
+        $orga->setFirstname("Organisateur");
+        $orga->setLastname("01");
         $orga->setEmail("orga1@mail.fr");
         $orga->setPassword($this->hasher->hashPassword($orga, "password"));
-        $orga->setRoles(["ADMIN"]);
+        $orga->setRoles(["ROLE_ADMIN"]);
         $manager->persist($orga);
         $orga2 = new Organisateur();
-        $orga2->setName("Organisateur 02");
+        $orga2->setFirstname("Organisateur");
+        $orga2->setLastname("02");
         $orga2->setEmail("orga2@mail.fr");
         $orga2->setPassword($this->hasher->hashPassword($orga, "password"));
-        $orga2->setRoles(["ADMIN"]);
+        $orga2->setRoles(["ROLE_ADMIN"]);
         $manager->persist($orga2);
 
         $checkpoint = new Checkpoint();
