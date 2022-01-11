@@ -31,7 +31,7 @@
 					<a href="{{path("producteur")}}">Producteurs</a>
 				</li>
 				<li>
-					<a href="">Inscription</a>
+					<a href="{{path("register")}}">Inscription</a>
 				</li>
 				<li>
 					{% if not app.user %}
@@ -93,5 +93,18 @@
 		padding: 4px 12px;
 		border-radius: 8px;
 		border: none;
+	}
+	form div {
+		margin: 10px;
+	}
+	form div input {
+		height: 20px;
+		margin-left: 12px;
+	}
+	form .register-btn {
+		background-color: lightblue;
+		border: none;
+		padding: 8px 30px;
+		border-radius: 8px;
 	}
 </style>

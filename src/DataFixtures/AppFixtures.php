@@ -20,6 +20,18 @@ class AppFixtures extends Fixture
     }
     public function load(ObjectManager $manager): void
     {
+        $checkpoint = new Checkpoint();
+        $checkpoint->setName("checkpoint 01");
+        $checkpoint->setAddress("10 rue du test");
+        $checkpoint->setCity("Paris");
+        $manager->persist($checkpoint);
+
+        $checkpoint2 = new Checkpoint();
+        $checkpoint2->setName("checkpoint 02");
+        $checkpoint2->setAddress("22 avenue fixture");
+        $checkpoint2->setCity("Lyon");
+        $manager->persist($checkpoint2);
+
         $producteur = new Producteur();
         $producteur->setFirstname("John");
         $producteur->setLastname("Wayne");
@@ -28,6 +40,7 @@ class AppFixtures extends Fixture
         $producteur->setRoles(['ROLE_PRODUCTEUR']);
         $producteur->setAddress("2 rue de la paix");
         $producteur->setCity("Paris");
+        $producteur->addCheckpoint($checkpoint);
         $manager->persist($producteur);
         $producteur2 = new Producteur();
         $producteur2->setFirstname("John");
@@ -37,6 +50,7 @@ class AppFixtures extends Fixture
         $producteur2->setPassword($this->hasher->hashPassword($producteur2, "password"));
         $producteur2->setAddress("Avenue matignon");
         $producteur2->setCity("Paris");
+        $producteur2->addCheckpoint($checkpoint2);
         $manager->persist($producteur);
         $manager->persist($producteur2);
 
@@ -86,17 +100,7 @@ class AppFixtures extends Fixture
         $orga2->setRoles(["ROLE_ADMIN"]);
         $manager->persist($orga2);
 
-        $checkpoint = new Checkpoint();
-        $checkpoint->setName("checkpoint 01");
-        $checkpoint->setAddress("10 rue du test");
-        $checkpoint->setCity("Paris");
-        $manager->persist($checkpoint);
 
-        $checkpoint2 = new Checkpoint();
-        $checkpoint2->setName("checkpoint 02");
-        $checkpoint2->setAddress("22 avenue fixture");
-        $checkpoint2->setCity("Lyon");
-        $manager->persist($checkpoint2);
 
         $manager->flush();
     }
