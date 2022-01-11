@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Checkpoint
+{% endblock %}
+
+{% block body %}
+	<style></style>
+
+	<div class="example-wrapper">
+		<h1>Checkpoints</h1>
+		<hr>
+		<div class="item-list">
+			{% for checkpoint in checkpoints %}
+				<div class="item">
+					<h2>{{checkpoint.name}}</h2>
+					<h4>{{checkpoint.address}}</h4>
+					<h3>{{checkpoint.city}}</h3>
+
+					<a href="{{path("producteur")}}">Voir tous les producteurs de ce secteur</a>
+
+				</div>
+			{% endfor %}
+		</div>
+
+	</div>
+{% endblock %}
