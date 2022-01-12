@@ -51,8 +51,17 @@ class AppFixtures extends Fixture
         $producteur2->setAddress("Avenue matignon");
         $producteur2->setCity("Paris");
         $producteur2->addCheckpoint($checkpoint2);
-        $manager->persist($producteur);
         $manager->persist($producteur2);
+        $producteur3 = new Producteur();
+        $producteur3->setFirstname("John");
+        $producteur3->setLastname("Legend");
+        $producteur3->setEmail("producteur3@mail.fr");
+        $producteur3->setRoles(['ROLE_PRODUCTEUR']);
+        $producteur3->setPassword($this->hasher->hashPassword($producteur2, "password"));
+        $producteur3->setAddress("Boulevard des capucines");
+        $producteur3->setCity("Paris");
+        $producteur3->addCheckpoint($checkpoint);
+        $manager->persist($producteur3);
 
         $product = new Product();
         $product->setName("Carottes");

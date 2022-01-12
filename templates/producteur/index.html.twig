@@ -18,20 +18,7 @@
 					</a>
 					<h3>{{producteur.city}}</h3>
 
-					<ul>
-						{% for product in producteur.products %}
-							<h5>{{product.name}}
-							</h5>
-							<h5>{{product.quantity}}
-								en stock
-							</h5>
-							<span class="price">{{product.price}}
-								€</span>
-							<p>
-								<button class="add-to-cart">Ajouter au panier</button>
-							</p>
-						{% endfor %}
-					</ul>
+
 				</div>
 			{% endfor %}
 		</div>

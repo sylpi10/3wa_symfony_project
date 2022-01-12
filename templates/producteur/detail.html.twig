@@ -6,13 +6,28 @@
 {% block body %}
 
 	<div class="example-wrapper">
-		<h1>Producteur
-			{{producteur.id}}</h1>
+		<h1>
+			{{producteur}}</h1>
 		<hr>
 
-		<h2>{{producteur.firstname}}
-			{{producteur.lastname}}</h2>
+		<h3>{{producteur.address}}</h3>
 		<h3>{{producteur.city}}</h3>
 
+		<ul class="product-list">
+			{% for product in producteur.products %}
+				<li>
+					<h5>{{product.name}}
+					</h5>
+					<h5>{{product.quantity}}
+						en stock
+					</h5>
+					<span class=" price">{{product.price}}
+						€</span>
+					<p>
+						<button class="add-to-cart">Ajouter au panier</button>
+					</p>
+				</li>
+			{% endfor %}
+		</ul>
 	</div>
 {% endblock %}

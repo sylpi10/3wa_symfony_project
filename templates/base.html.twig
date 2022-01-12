@@ -95,12 +95,7 @@
 	.price {
 		color: #6495ed;
 	}
-	.add-to-cart {
-		background-color: lightgreen;
-		padding: 4px 12px;
-		border-radius: 8px;
-		border: none;
-	}
+
 	form div {
 		margin: 10px;
 	}
@@ -113,5 +108,25 @@
 		border: none;
 		padding: 8px 30px;
 		border-radius: 8px;
+	}
+	.product-list {
+		display: flex;
+		justify-content: space-around;
+		list-style-type: none;
+	}
+	.product-list li {
+		box-shadow: 2px 2px 8px #ccc, -2px -2px 8px #ccc;
+		padding: 20px;
+		text-align: center;
+	}
+	.product-list .add-to-cart {
+		background-color: lightgreen;
+		padding: 4px 12px;
+		border-radius: 8px;
+		border: none;
+		cursor: pointer;
+	}
+	.product-list .add-to-cart:hover {
+		opacity: .7;
 	}
 </style>
