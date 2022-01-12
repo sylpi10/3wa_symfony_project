@@ -40,6 +40,11 @@
 						<a href="{{path("app_login")}}">Connexion</a>
 					</li>
 				{% endif %}
+				{% if not is_granted('ROLE_ADMIN')%}
+					<li>
+						<a href="{{path("organisateur")}}">Organisateur</a>
+					</li>
+				{% endif %}
 				{% if app.user %}
 					<li>
 						<a href="{{path("app_logout")}}">Logout</a>
@@ -128,5 +133,17 @@
 	}
 	.product-list .add-to-cart:hover {
 		opacity: .7;
+	}
+	.orga-wrapper {
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-start;
+	}
+	.orga-actions,
+	.orga-register {
+		width: 45%;
+		margin: auto 10px;
+		border: solid 1px #ccc;
+		padding: 20px;
 	}
 </style>

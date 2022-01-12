@@ -11,12 +11,11 @@
 		<div class="item-list">
 			{% for producteur in producteurs %}
 				<div class="item">
-
 					<a href="{{path('producteur_detail', {'id': producteur.id})}}">
-						<h2>{{producteur}}</h2>
+						<h2>{{producteur}}
+						</h2>
 					</a>
 					<h3>{{producteur.city}}</h3>
-
 
 				</div>
 			{% endfor %}
