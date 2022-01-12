@@ -1,7 +1,6 @@
 <?php
 
 use App\Kernel;
-/* this is a test */
 
 require_once dirname(__DIR__) . '/vendor/autoload_runtime.php';
 
