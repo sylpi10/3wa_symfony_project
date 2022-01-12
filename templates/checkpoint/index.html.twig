@@ -12,15 +12,17 @@
 		<div class="item-list">
 			{% for checkpoint in checkpoints %}
 				<div class="item">
+
 					<h2>{{checkpoint.name}}</h2>
 					<h4>{{checkpoint.address}}</h4>
 					<h3>{{checkpoint.city}}</h3>
 
-					<a href="{{path("producteur")}}">Voir tous les producteurs de ce secteur</a>
+					<a href="{{path('checkpoint_detail', {'id': checkpoint.id})}}">
+						Voir tous les producteurs de ce secteur</a>
+				</a>
 
-				</div>
-			{% endfor %}
-		</div>
-
+			</div>
+		{% endfor %}
 	</div>
-{% endblock %}
+
+</div>{% endblock %}

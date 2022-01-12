@@ -43,10 +43,6 @@ class Producteur extends FinalUser
         $this->checkpoints = new ArrayCollection();
     }
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
 
 
     public function getAddress(): ?string

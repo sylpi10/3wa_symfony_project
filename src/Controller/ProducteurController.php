@@ -35,8 +35,7 @@ class ProducteurController extends AbstractController
      */
     public function detail(Producteur $producteur): Response
     {
-        dd($producteur);
-        return $this->render('producteur/index.html.twig', [
+        return $this->render('producteur/detail.html.twig', [
             'producteur' => $producteur,
         ]);
     }

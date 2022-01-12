@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Checkpoint;
 use App\Repository\CheckpointRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,6 +25,15 @@ class CheckpointController extends AbstractController
 
         return $this->render('checkpoint/index.html.twig', [
             'checkpoints' => $checkpoints,
+        ]);
+    }
+    /**
+     * @Route("/checkpoint/{id}", name="checkpoint_detail")
+     */
+    public function detail(Checkpoint $checkpoint): Response
+    {
+        return $this->render('checkpoint/detail.html.twig', [
+            'checkpoint' => $checkpoint,
         ]);
     }
 }
