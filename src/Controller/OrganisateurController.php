@@ -3,6 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Organisateur;
+use App\Entity\Product;
+use App\Entity\Producteur;
+use App\Form\AssignCheckpointType;
 use App\Form\OrganisateurRegistrationFormType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -48,10 +51,23 @@ class OrganisateurController extends AbstractController
         }
 
         // $organisateurs = $this->repo->findAll();
+        // $producteur = new Producteur();
+        $assignForm = $this->createForm(AssignCheckpointType::class);
+        $assignForm->handleRequest($request);
+        if ($assignForm->isSubmitted() && $assignForm->isValid()) {
+            $assignedProducteur = $assignForm->get('producteur')->getNormData();
+            $assignedCheckpoint = $assignForm->get('checkpoints')->getNormData();
 
+            $assignedProducteur->addCheckpoint($assignedCheckpoint);
+            $entityManager->persist($assignedProducteur);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('organisateur');
+        }
         return $this->render('organisateur/index.html.twig', [
             // 'organisateurs' => $organisateurs,
             'registrationForm' => $form->createView(),
+            'assignForm' => $assignForm->createView(),
         ]);
     }
 }

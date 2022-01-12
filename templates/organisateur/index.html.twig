@@ -27,8 +27,11 @@
 			</div>
 			<div class="orga-actions">
 				<h3>- Créer un checkpoint</h3>
-
 				<h3>- Assigner des producteurs à des checkpoints</h3>
+				{{form_start(assignForm)}}
+				{{form_widget(assignForm)}}
+				<button type="submit" class="register-btn">Assigner</button>
+				{{form_end(assignForm)}}
 
 				<h3>- Assigner des livraisons à des producteurs</h3>
 			</div>

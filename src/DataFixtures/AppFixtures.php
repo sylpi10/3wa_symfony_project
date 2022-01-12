@@ -41,6 +41,7 @@ class AppFixtures extends Fixture
         $producteur->setAddress("2 rue de la paix");
         $producteur->setCity("Paris");
         $producteur->addCheckpoint($checkpoint);
+
         $manager->persist($producteur);
         $producteur2 = new Producteur();
         $producteur2->setFirstname("John");
