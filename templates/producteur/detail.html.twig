@@ -28,6 +28,29 @@
 					</p>
 				</li>
 			{% endfor %}
+
 		</ul>
+
+		{% if accepted|length > 0%}
+			<h4>Mes checkpoints à valider</h4>
+			<form action="{{path("producteur_detail", {'id': producteur.id})}}" method="post" name="acceptCheckpoint">
+				{% for key, checkpoint in producteur.checkpoints %}
+					{% if not checkpoint.isAccepted %}
+						<input type="checkbox" name="{{"checkpoint#{key}"}}">
+						{{checkpoint.name}}
+					{% endif %}
+				{% endfor %}
+				<button type="submit">Accept</button>
+			</form>
+		{% endif %}
+		<hr>
+		{% if refused|length > 0 %}
+			<h4>Mes checkpoints</h4>
+			{% for checkpoint in producteur.checkpoints %}
+				{% if checkpoint.isAccepted %}
+					{{checkpoint.name}}
+				{% endif %}
+			{% endfor %}
+		{% endif %}
 	</div>
 {% endblock %}

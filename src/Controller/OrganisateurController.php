@@ -50,11 +50,19 @@ class OrganisateurController extends AbstractController
         $assignForm = $this->createForm(AssignCheckpointType::class);
         $assignForm->handleRequest($request);
         if ($assignForm->isSubmitted() && $assignForm->isValid()) {
-            $assignedProducteur = $assignForm->get('producteur')->getNormData();
-            $assignedCheckpoint = $assignForm->get('checkpoints')->getNormData();
+            $assignedProducteur = $assignForm->get('producteur');
+            $assignedCheckpoint =  $assignForm->get('checkpoints');
+            foreach ($assignedProducteur->getNormData() as $producteur) {
 
-            $assignedProducteur->addCheckpoint($assignedCheckpoint);
-            $entityManager->persist($assignedProducteur);
+                foreach ($assignedCheckpoint->getNormData() as $checkpoint) {
+                    // $checkpoint->setIsAccepted(false);
+                    $producteur->addCheckpoint($checkpoint);
+                }
+                $entityManager->persist($producteur);
+            }
+
+            // $assignedProducteur->addCheckpoint($assignedCheckpoint);
+            // $entityManager->persist($assignedProducteur);
             $entityManager->flush();
 
             return $this->redirectToRoute('organisateur');

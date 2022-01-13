@@ -19,7 +19,7 @@ class AssignCheckpointType extends AbstractType
                 'choice_label' => function (?Producteur $producteur) {
                     return $producteur ? $producteur : '';
                 },
-                // 'multiple' => true,
+                'multiple' => true,
                 'expanded' => true,
                 // 'choice_value' => function (?Producteur $producteur) {
                 //     return $producteur ? $producteur->getId() : '';
@@ -28,7 +28,7 @@ class AssignCheckpointType extends AbstractType
             ->add('checkpoints', EntityType::class, [
                 'class' => Checkpoint::class,
                 'choice_label' => 'name',
-                // 'multiple' => true,
+                'multiple' => true,
                 'expanded' => true,
                 // 'choice_value' => function (?Checkpoint $checkpoint) {
                 //     return $checkpoint ? $checkpoint->getId() : '';

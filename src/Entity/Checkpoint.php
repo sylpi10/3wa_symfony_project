@@ -39,6 +39,11 @@ class Checkpoint
      */
     private $producteurs;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $isAccepted;
+
     public function __construct()
     {
         $this->producteurs = new ArrayCollection();
@@ -105,6 +110,18 @@ class Checkpoint
     public function removeProducteur(Producteur $producteur): self
     {
         $this->producteurs->removeElement($producteur);
+
+        return $this;
+    }
+
+    public function getIsAccepted(): ?bool
+    {
+        return $this->isAccepted;
+    }
+
+    public function setIsAccepted(?bool $isAccepted): self
+    {
+        $this->isAccepted = $isAccepted;
 
         return $this;
     }

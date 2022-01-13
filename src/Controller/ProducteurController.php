@@ -4,15 +4,18 @@ namespace App\Controller;
 
 use App\Entity\FinalUser;
 use App\Entity\Producteur;
-use App\Form\ProducteurRegistrationFormType;
-use App\Repository\ProducteurRepository;
+use App\Form\AcceptCheckpointType;
 use App\Repository\ProductRepository;
+use App\Repository\ProducteurRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Form\ProducteurRegistrationFormType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class ProducteurController extends AbstractController
 {
@@ -60,12 +63,48 @@ class ProducteurController extends AbstractController
     }
 
     /**
-     * @Route("/producteur/{id}", name="producteur_detail")
+     * @Route("/producteur/{id}", name="producteur_detail", methods={"GET", "POST"})
      */
-    public function detail(Producteur $producteur): Response
+    public function detail(Producteur $producteur, Request $request, EntityManagerInterface $entityManager): Response
     {
+        $checkpoints = $producteur->getCheckpoints();
+        $accepted = [];
+        $refused = [];
+        if (count($checkpoints) > 0) {
+            foreach ($checkpoints as $check) {
+                if (!$check->getIsAccepted()) {
+                    $accepted[] = $check;
+                }
+                if ($check->getIsAccepted()) {
+                    $refused[] = $check;
+                }
+            }
+        }
+
+        if ($_POST) {
+
+            foreach ($request->request as $data) {
+                if ($data == 'on') {
+                    foreach ($producteur->getCheckpoints() as $checkpoint) {
+                        $checkpoint->setIsAccepted(true);
+                        $entityManager->persist($producteur);
+                    }
+                }
+                $entityManager->flush();
+            }
+            // return $this->redirectToRoute('producteur_detail', [
+            //     'id' => $producteur->getId()
+            // ]);
+
+            return $this->redirect('/producteur/' . $producteur->getId());
+        }
+
+
         return $this->render('producteur/detail.html.twig', [
             'producteur' => $producteur,
+            'checkpoints' => $checkpoints,
+            'accepted' => $accepted,
+            'refused' => $refused,
         ]);
     }
     /**

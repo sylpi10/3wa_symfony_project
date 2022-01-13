@@ -36,7 +36,6 @@ class Producteur extends FinalUser
     private $checkpoints;
 
 
-
     public function __construct()
     {
         $this->products = new ArrayCollection();
@@ -110,7 +109,9 @@ class Producteur extends FinalUser
     public function addCheckpoint(Checkpoint $checkpoint): self
     {
         if (!$this->checkpoints->contains($checkpoint)) {
-            $this->checkpoints[] = $checkpoint;
+            // $this->checkpoints[] = $checkpoint;
+
+            $this->setCheckPointAssignments[] = $checkpoint;
             $checkpoint->addProducteur($this);
         }
 
