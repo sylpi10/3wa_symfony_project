@@ -40,11 +40,9 @@
 						<a href="{{path("app_login")}}">Connexion</a>
 					</li>
 				{% endif %}
-				{% if not is_granted('ROLE_ADMIN')%}
-					<li>
-						<a href="{{path("organisateur")}}">Organisateur</a>
-					</li>
-				{% endif %}
+				<li>
+					<a href="{{path("organisateur")}}">Organisateur</a>
+				</li>
 				{% if app.user %}
 					<li>
 						<a href="{{path("app_logout")}}">Logout</a>
@@ -77,15 +75,14 @@
 	}
 	.example-wrapper {
 		margin: 1em auto;
-		max-width: 800px;
-		width: 95%;
-		font: 18px / 1.5 sans-serif;
+		width: 64%;
 	}
 	.item-list {
 		display: flex;
+		flex-wrap: wrap;
 	}
 	.item {
-		width: 300px;
+		width: 220px;
 		border: solid 1px #ccc;
 		padding: 20px;
 		margin: 10px;

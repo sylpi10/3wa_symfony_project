@@ -3,8 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\Organisateur;
-use App\Entity\Product;
-use App\Entity\Producteur;
 use App\Form\AssignCheckpointType;
 use App\Form\OrganisateurRegistrationFormType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -45,13 +43,10 @@ class OrganisateurController extends AbstractController
 
             $entityManager->persist($organisateur);
             $entityManager->flush();
-            // do anything else you need here, like send an email
 
             return $this->redirectToRoute('organisateur');
         }
 
-        // $organisateurs = $this->repo->findAll();
-        // $producteur = new Producteur();
         $assignForm = $this->createForm(AssignCheckpointType::class);
         $assignForm->handleRequest($request);
         if ($assignForm->isSubmitted() && $assignForm->isValid()) {

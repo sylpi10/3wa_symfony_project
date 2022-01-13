@@ -16,7 +16,9 @@ class AssignCheckpointType extends AbstractType
         $builder
             ->add('producteur', EntityType::class, [
                 'class' => Producteur::class,
-                'choice_label' => 'lastname',
+                'choice_label' => function (?Producteur $producteur) {
+                    return $producteur ? $producteur : '';
+                },
                 // 'multiple' => true,
                 'expanded' => true,
                 // 'choice_value' => function (?Producteur $producteur) {

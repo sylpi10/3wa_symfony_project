@@ -8,33 +8,38 @@
 		<h1>Organisateurs !
 		</h1>
 		<div class="orga-wrapper">
-			<div class="orga-register">
-				<h3>S'inscrire en tant qu'Organisateur</h3>
+			{% if not is_granted('ROLE_ADMIN')%}
+				<div class="orga-register">
+					<h3>S'inscrire en tant qu'Organisateur</h3>
 
-				{{ form_start(registrationForm) }}
-				{{ form_row(registrationForm.firstname) }}
-				{{ form_row(registrationForm.lastname) }}
-				{{ form_row(registrationForm.email) }}
-				{{ form_row(registrationForm.plainPassword, {
+					{{ form_start(registrationForm) }}
+					{{ form_row(registrationForm.firstname) }}
+					{{ form_row(registrationForm.lastname) }}
+					{{ form_row(registrationForm.email) }}
+					{{ form_row(registrationForm.plainPassword, {
             		label: 'Password'
 				}) }}
 
-				{{ form_row(registrationForm.agreeTerms) }}
+					{{ form_row(registrationForm.agreeTerms) }}
 
-				<button type="submit" class="register-btn">Register</button>
+					<button type="submit" class="register-btn">Register</button>
 
-				{{ form_end(registrationForm) }}
-			</div>
-			<div class="orga-actions">
-				<h3>- Créer un checkpoint</h3>
-				<h3>- Assigner des producteurs à des checkpoints</h3>
-				{{form_start(assignForm)}}
-				{{form_widget(assignForm)}}
-				<button type="submit" class="register-btn">Assigner</button>
-				{{form_end(assignForm)}}
+					{{ form_end(registrationForm) }}
+				</div>
+			{% endif %}
+			{% if is_granted('ROLE_ADMIN')%}
+				<div class="orga-actions">
+					<h3>- Créer un checkpoint</h3>
+					<h3>- Assigner des producteurs à des checkpoints</h3>
+					{{form_start(assignForm)}}
+					{{form_widget(assignForm)}}
+					<button type="submit" class="register-btn">Assigner</button>
+					{{form_end(assignForm)}}
 
-				<h3>- Assigner des livraisons à des producteurs</h3>
-			</div>
+					<h3>- Assigner des livraisons à des producteurs</h3>
+				</div>
+			{% endif %}
+
 		</div>
 	</div>
 {% endblock %}
