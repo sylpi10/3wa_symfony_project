@@ -56,6 +56,9 @@ class OrganisateurController extends AbstractController
 
                 foreach ($assignedCheckpoint->getNormData() as $checkpoint) {
                     // $checkpoint->setIsAccepted(false);
+                    // if ($checkpoint->getIsAccepted() == true) {
+                    //     dd('no');
+                    // }
                     $producteur->addCheckpoint($checkpoint);
                 }
                 $entityManager->persist($producteur);

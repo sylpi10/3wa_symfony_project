@@ -45,7 +45,7 @@
 		{% endif %}
 		<hr>
 		{% if refused|length > 0 %}
-			<h4>Mes checkpoints</h4>
+			<h4>Mes checkpoints acceptés</h4>
 			{% for checkpoint in producteur.checkpoints %}
 				{% if checkpoint.isAccepted %}
 					{{checkpoint.name}}
